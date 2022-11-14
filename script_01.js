@@ -1,4 +1,6 @@
 
+"use strict";
+
 /*** Rechner */
 /*
 0. a+b / a-b/ a*b / a/b  // ergebnis c 
@@ -9,43 +11,71 @@
 */
 
 // application / App
-// startApp();
+
+let isNotAborted; // Globale Variable
+
+startApp();
 function startApp() {
-    output(calculator(getNumber("1st"),getNumber("2nd"),getOp())); 
-}
+    let num1,num2,op;
+    isNotAborted = true;
 
-function getNumber(figure) {
-    let inputStr = prompt("Please insert " + figure + " number:") 
-    let num = parseInt(inputStr);
-    return num; 
-}
-
-
-// module: input operator | Test:
-output(getOp());
-function getOp() {
-    let op = prompt("Please insert an operator:" );
-    if (isOpValid(op)) {
-        return "operator ok";
-    } else {
-        return "operator nicht ok"; 
-    }  
-}
-
-function isOpValid(op) {
-    switch (op) {
-        case "+":
-        case "-":
-        case "*":
-        case ":":
-        case "/":
-            return true;
-        default:
-            return false;
+    if (isNotAborted){num1 = getNumber("1st");}
+    if (isNotAborted){num2 = getNumber("2nd");}
+    if (isNotAborted){op = getOp();}
+    
+    if (isNotAborted){
+        output(calculator(num1,num2,op)); 
+    } else{
+        output("Aborted by user!");
     }
 }
 
+// module: data input | test:
+//output(getNumber("1st"));
+function getNumber(figure) {
+    const displayStr = "Please insert " + figure + " number:";
+    let inputStr = prompt(displayStr) 
+    let num = parseInt(inputStr);
 
+    // if num is NOT a number AND user DIDN'T click at Abbrechen
+    while (isNaN(num) && (inputStr !== null)) {
+        inputStr =  prompt(displayStr);
+        num = parseInt(inputStr); 
+    }
+    
+    // if this is aborted, ALL gets aborted ...
+    if(inputStr == null){isNotAborted = false;}
+    return num;
+        
+}
+
+// module: input operator | Test:
+//output(getOp());
+function getOp() {
+    const displayStr = "Please insert correct operator [ + | - | * | : | / ]:";
+    let op = prompt(displayStr); 
+
+    // if op is NOT valid AND user DIDN'T click at Abbrechen
+    while (isNotValidOp(op) && (op !== null)) {
+        op = prompt(displayStr);
+    }
+
+    if (op == null){isNotAborted = false;}
+    return op;
+}
+
+// module: check operator | Test:
+// agreement : "+","-","*",":","/"
+// output(isNotValidOp("+"));
+// output(isNotValidOp("-"));
+// output(isNotValidOp("*"));
+// output(isNotValidOp(":"));
+// output(isNotValidOp("/"));
+// output(isNotValidOp("#?#"));
+// output(isNotValidOp(""));
+function isNotValidOp(op) {
+    return op != "+" && op != "-" && op != "*" && op != ":" && op != "/";
+}
 
 // module: calculator | tests:
 // agreement : "+","-","*",":"
@@ -111,7 +141,7 @@ function add(a,b) {
 // output("hello");
 // output(2);
 function output(outputData) {
-   // console.log(typeof outputData);
+   //console.log(typeof outputData);
     if (typeof outputData == "number") {
         console.log("The result is: " + outputData); 
     } else {

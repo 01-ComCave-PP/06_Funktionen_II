@@ -10,22 +10,23 @@
 
 // module: calculator | tests:
 // agreement : "+","-","*",":"
-output(calculator("+"));
-output(calculator("-"));
-output(calculator("*"));
-output(calculator(":"));
-output(calculator("#?!"));
-
-function calculator(op) {
+output(calculator(2,2,"+"));
+output(calculator(2,2,"-"));
+output(calculator(2,2,"*"));
+output(calculator(2,2,":"));
+output(calculator(2,0,"/"));
+output(calculator(2,2,"#?!"));
+function calculator(a,b,op) {
     switch (op) {
         case "+": // addition
-            return "add";
+            return add(a,b);
         case "-": // subtraktion
-            return "sub";
+            return subtract(a,b);
         case "*": // multiplikation
-            return "mul";
+            return multiply(a,b);
         case ":": // divison
-            return "div";
+        case "/": // divison
+            return divide(a,b);
         default:  // Error ...
             return "Something went wrong!";
     }

@@ -11,19 +11,18 @@
 // application / App
 startApp();
 function startApp() {
-    output(calculator(getNumber1(),getNumber2(),getOp())); 
+    output(calculator(getNumber("1st"),getNumber("2nd"),getOp())); 
 }
 
-function getNumber1() {
-   return 2; 
-}
-
-function getNumber2() {
-   return 2; 
+function getNumber(figure) {
+    let inputStr = prompt("Please insert " + figure + " number:") 
+    let num = parseInt(inputStr);
+    return num; 
 }
 
 function getOp() {
-   return "+";
+    let op = prompt("Please insert an operator:" );
+    return op;
 }
 
 

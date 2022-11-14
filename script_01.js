@@ -10,10 +10,11 @@
 4. Ausgabe in Konsole : check!
 */
 
+
+// Globale Variable
+let isNotAborted; 
+
 // application / App
-
-let isNotAborted; // Globale Variable
-
 startApp();
 function startApp() {
     let num1,num2,op;

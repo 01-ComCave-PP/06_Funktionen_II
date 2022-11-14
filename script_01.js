@@ -3,19 +3,19 @@
 /*
 0. a+b / a-b/ a*b / a/b  // ergebnis c 
 1. Dateneingabe + -überprüfung :
-2. Auswahl Rechenart : 
+2. Auswahl Rechenart : check!
 3. Fkt. Grundrechenarten : check!
 4. Ausgabe in Konsole : check!
 */
 
 // module: calculator | tests:
 // agreement : "+","-","*",":"
-output(calculator(2,2,"+"));
-output(calculator(2,2,"-"));
-output(calculator(2,2,"*"));
-output(calculator(2,2,":"));
-output(calculator(2,0,"/"));
-output(calculator(2,2,"#?!"));
+// output(calculator(2,2,"+"));
+// output(calculator(2,2,"-"));
+// output(calculator(2,2,"*"));
+// output(calculator(2,2,":"));
+// output(calculator(2,0,"/"));
+// output(calculator(2,2,"#?!"));
 function calculator(a,b,op) {
     switch (op) {
         case "+": // addition
@@ -31,7 +31,6 @@ function calculator(a,b,op) {
             return "Something went wrong!";
     }
 }
-
 
 // module: division a / b |  test:
 // output(divide(2,3));
@@ -70,8 +69,13 @@ function add(a,b) {
 }
 
 // module: console output | test:
-// output("hello");
-// output(2);
+output("hello");
+output(2);
 function output(outputData) {
-    console.log(outputData);
+   // console.log(typeof outputData);
+    if (typeof outputData == "number") {
+        console.log("The result is: " + outputData); 
+    } else {
+        console.log("ERROR: " + outputData); 
+    }
 }

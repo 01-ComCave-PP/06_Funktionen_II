@@ -9,7 +9,7 @@
 */
 
 // application / App
-startApp();
+// startApp();
 function startApp() {
     output(calculator(getNumber("1st"),getNumber("2nd"),getOp())); 
 }
@@ -20,10 +20,31 @@ function getNumber(figure) {
     return num; 
 }
 
+
+// module: input operator | Test:
+output(getOp());
 function getOp() {
     let op = prompt("Please insert an operator:" );
-    return op;
+    if (isOpValid(op)) {
+        return "operator ok";
+    } else {
+        return "operator nicht ok"; 
+    }  
 }
+
+function isOpValid(op) {
+    switch (op) {
+        case "+":
+        case "-":
+        case "*":
+        case ":":
+        case "/":
+            return true;
+        default:
+            return false;
+    }
+}
+
 
 
 // module: calculator | tests:
